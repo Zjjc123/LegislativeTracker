@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, SafeAreaView, StatusBar, StyleSheet, Button, Alert, Dimensions } from 'react-native';
-import { ListItem, SearchBar } from 'react-native-elements'
+import { View, FlatList, StyleSheet, Dimensions } from 'react-native';
+import { SearchBar } from 'react-native-elements'
+import BillCard from './BillCard'
 var url = 'https://api.propublica.org/congress/v1/116/house/bills/active.json'
 var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
 
@@ -28,18 +29,11 @@ export default function BillListView() {
     setInitialBills(response);
   }
 
-  const Item = ({ title, subtitle }) => (
-    <View>
-      <ListItem
-        title={title}
-        subtitle={subtitle}
-        bottomDivider
-        onPress={() => Alert.alert('Simple Button pressed')}/>
-    </View>
-  );
-
-  const renderItem = ({ item }) => (
-    <Item title={item.title} subtitle={item.bill_id} />
+  const renderItem = (item) => (
+    <BillCard
+      title={item.title}
+      subtitle={item.bill_id}
+    />
   );
 
   const searchBills = (search) => {
@@ -56,18 +50,18 @@ export default function BillListView() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <SearchBar
-        placeholder = "Search"
-        value = {searchValue}
-        onChangeText = {(value) => searchBills(value)}
+        placeholder="Search"
+        value={searchValue}
+        onChangeText={(value) => searchBills(value)}
       />
       <FlatList
         data={bills}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 

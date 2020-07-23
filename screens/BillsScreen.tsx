@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
 import BillListView from '../components/bill_list/BillListView';
 
 export default function BillsScreen() {
