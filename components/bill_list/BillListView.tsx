@@ -39,7 +39,7 @@ export default function BillListView() {
   );
 
   const renderItem = ({ item }) => (
-    <Item title={item.title} bill_id={item.userId} />
+    <Item title={item.title} bill_id={item.bill_id} />
   );
 
   const searchBills = (search) => {
