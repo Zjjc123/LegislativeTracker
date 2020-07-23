@@ -37,6 +37,8 @@ export default class LocationScreen extends React.Component<{}, stateType>{
 
       if (this.state.address != '') {
         this.getAPI();
+      } else {
+        this.setState({loaded: true});
       }
     } catch(e) {
     }
@@ -109,9 +111,9 @@ export default class LocationScreen extends React.Component<{}, stateType>{
         <View style={styles.container}>
 
           <View style={styles.center}>
-            <Text style={styles.title}>Enter Your Address</Text>
 
             <Input inputStyle={styles.textInput}
+                       placeholder="Input Your Address"
                        autoCapitalize="none"
                        onChangeText={address => this.setState({address})}>{this.state.address}</Input>
 
@@ -162,8 +164,9 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   textInput: {
-    height: 40,
-    fontSize: 15
+    height: 60,
+    fontSize: 18,
+    marginTop: 10
   },
   button: {
     marginHorizontal: 30,
