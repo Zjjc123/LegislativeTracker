@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, SafeAreaView, StatusBar, StyleSheet, Button } from 'react-native';
-
+import { View, FlatList, Text, SafeAreaView, StatusBar, StyleSheet, Button, Alert } from 'react-native';
+import { ListItem } from 'react-native-elements'
 var url = 'https://api.propublica.org/congress/v1/115/house/bills/introduced.json'
 var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9CDvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
 
@@ -20,7 +20,7 @@ export default function BillListView() {
 
   const Item = ({ title }) => (
     <View>
-      <Button
+      <ListItem style = {styles.listItem}
         title = {title}
         onPress={() => Alert.alert('Simple Button pressed')}/>
     </View>
@@ -44,11 +44,16 @@ export default function BillListView() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   title: {
     textAlign: 'center',
     marginVertical: 8,
+  },
+  listItem: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
 });
 
