@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, Text, SafeAreaView, StatusBar, StyleSheet, Button, Alert, Dimensions } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements'
-// var url = 'https://api.propublica.org/congress/v1/116/house/bills/introduced.json'
-var url = 'https://jsonplaceholder.typicode.com/todos'
-var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9CDvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
+var url = 'https://api.propublica.org/congress/v1/116/house/bills/introduced.json'
+var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
 
 export default function BillListView() {
   const [bills, setBills] = useState()
@@ -18,28 +17,29 @@ export default function BillListView() {
       }
     })
       .then(response => response.json())
-      .then(json =>
+      .then(response =>
         // Triggers rerender
-        initializeBill(json)
+        initializeBill(response.results[0].bills)
       )
   }, [])
 
-  const initializeBill = (json) => {
-    setBills(json)
-    setInitialBills(json)
+  const initializeBill = (response) => {
+    setBills(response);
+    setInitialBills(response);
   }
 
   const Item = ({ title, bill_id }) => (
     <View>
       <ListItem
-        title = {title}
-        subtitle = {bill_id}
+        title={title}
+        subtitle={bill_id}
+        bottomDivider
         onPress={() => Alert.alert('Simple Button pressed')}/>
     </View>
   );
 
   const renderItem = ({ item }) => (
-    <Item title={item.title} bill_id = {item.userId} />
+    <Item title={item.title} bill_id={item.userId} />
   );
 
   const searchBills = (search) => {
@@ -82,19 +82,3 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
 });
-
-async function getBills(url: string, apiKey: string) {
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "X-API-Key": apiKey
-      }
-    });
-    const responseJson = await response.json();
-    console.log(responseJson)
-    return responseJson.result;
-  }
-  catch (error) {
-    console.error(error);
-  }
-}
