@@ -37,7 +37,7 @@ export default function BottomTabNavigator() {
           name="Location"
           component={TabThreeNavigator}
           options={{
-              tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+              tabBarIcon: ({ color }) => <TabBarIcon name="md-navigate" color={color} />,
           }}
       />
     </BottomTab.Navigator>
