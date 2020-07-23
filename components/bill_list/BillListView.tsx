@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, FlatList, Text, SafeAreaView, StatusBar, StyleSheet, Button, Alert, Dimensions } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements'
-var url = 'https://api.propublica.org/congress/v1/116/house/bills/introduced.json'
+var url = 'https://api.propublica.org/congress/v1/116/house/bills/active.json'
 var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
 
 export default function BillListView() {
@@ -28,18 +28,18 @@ export default function BillListView() {
     setInitialBills(response);
   }
 
-  const Item = ({ title, bill_id }) => (
+  const Item = ({ title, subtitle }) => (
     <View>
       <ListItem
         title={title}
-        subtitle={bill_id}
+        subtitle={subtitle}
         bottomDivider
         onPress={() => Alert.alert('Simple Button pressed')}/>
     </View>
   );
 
   const renderItem = ({ item }) => (
-    <Item title={item.title} bill_id={item.bill_id} />
+    <Item title={item.title} subtitle={item.bill_id} />
   );
 
   const searchBills = (search) => {
