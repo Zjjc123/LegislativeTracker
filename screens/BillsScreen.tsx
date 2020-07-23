@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import BillListView from '../components/ListView/BillListView';
+import BillListView from '../components/bill_list/BillListView';
 
 export default function BillsScreen() {
   return (
     <View style={styles.container}>
-      <BillListView></BillListView>
+      <BillListView/>
     </View>
   );
 }

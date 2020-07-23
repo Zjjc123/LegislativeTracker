@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { View, FlatList, Text, SafeAreaView, StatusBar, StyleSheet, Button } from 'react-native';
 
 var url = 'https://api.propublica.org/congress/v1/115/house/bills/introduced.json'
 var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9CDvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
@@ -19,24 +18,39 @@ export default function BillListView() {
     console.log(bills)
   }, [])
 
-  const renderRow = ({item}) => {
-    return (
-      <ListItem>
-        <Text style={{color: 'red'}}>{item.title}</Text>
-      </ListItem>
-    );
-  };
+  const Item = ({ title }) => (
+    <View>
+      <Button
+        title = {title}
+        onPress={() => Alert.alert('Simple Button pressed')}/>
+    </View>
+  );
+
+  const renderItem = ({ item }) => (
+    <Item title={item.title} />
+  );
 
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <FlatList
-        data = {bills}
-        renderItem = {renderRow}
+        data={bills}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
       />
-    </View>
-  )
+    </SafeAreaView>
+  );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  title: {
+    textAlign: 'center',
+    marginVertical: 8,
+  },
+});
 
 async function getBills(url: string, apiKey: string) {
   try {
