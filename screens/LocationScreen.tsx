@@ -111,7 +111,7 @@ export default class LocationScreen extends React.Component<{}, stateType>{
           <View style={styles.center}>
             <Text style={styles.title}>Enter Your Address</Text>
 
-            <Input style={styles.textInput}
+            <Input inputStyle={styles.textInput}
                        autoCapitalize="none"
                        onChangeText={address => this.setState({address})}>{this.state.address}</Input>
 
@@ -162,11 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   textInput: {
-    width: '90%',
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderBottomWidth: StyleSheet.hairlineWidth,
     fontSize: 15
   },
   button: {
