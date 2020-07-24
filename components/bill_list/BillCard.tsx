@@ -5,7 +5,7 @@ import { Card, colors } from 'react-native-elements'
 export default function BillCard(props) {
     const Committee = (props) => {
         var colorHex: string = "#0C222E"
-        console.log(props.committee)
+        var com = props.committee
         switch (props.committee) {
             case "House Agriculture Committee":
                 colorHex = "#ff0000"
@@ -67,6 +67,9 @@ export default function BillCard(props) {
             case "House Ways and Means Committee":
                 colorHex = "#4F5D2F"
                 break
+            case "":
+                com = "None"
+                break
         }
 
         return (
@@ -77,7 +80,7 @@ export default function BillCard(props) {
                 <Text style={{
                     color: "#ffffff",
                     textAlign: "center"
-                }}>{props.committee}</Text>
+                }}>{com}</Text>
             </Card>
         )
     }
