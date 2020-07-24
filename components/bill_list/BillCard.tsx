@@ -104,7 +104,7 @@ export default function BillCard(props) {
                 justifyContent: "center",
                 flex: 1,
                 padding: 2,
-                marginTop: 10
+                marginTop: 5
             }}>
                 <Text style={{
                     color: "#ffffff",
@@ -130,7 +130,7 @@ export default function BillCard(props) {
                 justifyContent: "center",
                 flex: 1,
                 padding: 2,
-                marginTop: 10
+                marginTop: 5
             }}>
                 <Text style={{
                     color: "#ffffff",
@@ -175,10 +175,14 @@ export default function BillCard(props) {
                 </Text>
 
                 <Text style={styles.titleText}>{props.title}</Text>
+
+                <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5 }}>
                     <Sponsor name={props.sponsor} party={props.party} />
-                <View style={{ flex: 1, flexDirection: 'row' }}>
                     <Committee committee={props.committee} />
                 </View>
+
+                <Text>{props.summary}</Text>
+
                 <BillStatus house_passage={props.house_passage}
                 senate_passage={props.senate_passage}
                 enacted={props.enacted}
