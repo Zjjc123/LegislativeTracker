@@ -28,10 +28,11 @@ export default function BillListView() {
   }, [])
 
   const initializeBill = (response) => {
+    var tM : {[id: string] : Array<Object>} = {}
+
     setBills(response);
     setInitialBills(response);
-    
-    var tM
+
     response.forEach(item => {
       
       console.log(item.committees)
@@ -41,9 +42,8 @@ export default function BillListView() {
       }
       tM[item.committees].push(item);
     });
-    setTagMap(tm)
-    console.dir(tagMap)
-    console.log("HELLO")
+
+    setTagMap(tM)
   }
 
   const renderItem = ({ item }) => (
@@ -78,9 +78,13 @@ export default function BillListView() {
 
   const filterBills = (category) => {
     var cat = category.label
-    // console.log(cat)
-    if (cat != 0 && tagMap["House " + cat + " Committee"] != null)
+
+    if (cat == "None")
+      setBills(initialBills)
+    else if (tagMap["House " + cat + " Committee"] != null)
       setBills(tagMap["House " + cat + " Committee"])
+    else
+      setBills(undefined)
   }
 
   return (
