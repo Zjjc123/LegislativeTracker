@@ -36,6 +36,7 @@ export default function BillListView() {
       intro_date={item.introduced_date}
       summary={item.summary}
       committee={item.committees}
+      sponsor={item.sponsor_title + " " + item.sponsor_name + ", " + item.sponsor_state + ", " + item.sponsor_party}
     />
   );
 

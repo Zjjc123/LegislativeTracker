@@ -76,11 +76,27 @@ export default function BillCard(props) {
             <Card containerStyle={{
                 backgroundColor: colorHex,
                 borderRadius: 10,
+                flex: 1
             }}>
                 <Text style={{
                     color: "#ffffff",
                     textAlign: "center"
                 }}>{com}</Text>
+            </Card>
+        )
+    }
+
+    const Sponsor = (props) => {
+        return (
+            <Card containerStyle={{
+                backgroundColor: "#000000",
+                borderRadius: 10,
+                flex: 1
+            }}>
+                <Text style={{
+                    color: "#ffffff",
+                    textAlign: "center"
+                }}>{props.name}</Text>
             </Card>
         )
     }
@@ -94,7 +110,14 @@ export default function BillCard(props) {
                     <Text>{props.intro_date}</Text>
                 </Text>
                 <Text style={styles.titleText}>{props.title}</Text>
-                <Committee committee={props.committee}></Committee>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={{ flex: 1 }}>
+                        <Sponsor name={props.sponsor}/>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <Committee committee={props.committee}/>
+                    </View>
+                </View>
             </Card>
         </View>
     )
@@ -103,6 +126,7 @@ export default function BillCard(props) {
 const styles = StyleSheet.create({
     card: {
         borderRadius: 5,
+        flex: 1,
     },
     titleText: {
         fontSize: 15,
