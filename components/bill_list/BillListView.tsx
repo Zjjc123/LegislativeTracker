@@ -37,6 +37,10 @@ export default function BillListView() {
       summary={item.summary}
       committee={item.committees}
       sponsor={item.sponsor_title + " " + item.sponsor_name + ", " + item.sponsor_state + ", " + item.sponsor_party}
+      house_passage={item.house_passage}
+      senate_passage={item.senate_passage}
+      enacted={item.enacted}
+      vetoed={item.vetoed}
     />
   );
 

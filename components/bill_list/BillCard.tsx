@@ -136,12 +136,11 @@ export default function BillCard(props) {
                 </Text>
                 <Text style={styles.titleText}>{props.title}</Text>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <View style={{ flex: 1 }}>
-                        <Sponsor name={props.sponsor}/>
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <Committee committee={props.committee}/>
-                    </View>
+                    <Sponsor name={props.sponsor} />
+                    <Committee committee={props.committee} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+
                 </View>
             </Card>
         </View>
