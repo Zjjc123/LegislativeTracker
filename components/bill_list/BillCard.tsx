@@ -111,9 +111,15 @@ export default function BillCard(props) {
     }
 
     const Sponsor = (props) => {
+        var colorHex: string = "#F2F09E"
+        if (props.party == "D")
+            colorHex = "#395BE5"
+        else if (props.party == "R")
+            colorHex = "#CE2929"
+
         return (
             <Card containerStyle={{
-                backgroundColor: "#000000",
+                backgroundColor: colorHex,
                 borderRadius: 10,
                 justifyContent: "center",
                 flex: 1
@@ -138,9 +144,9 @@ export default function BillCard(props) {
         return (
             <View style={{ flex: 1 }}>
                 <ProgressSteps activeStep={step} >
-                    <ProgressStep removeBtnRow label="House Passage">
+                    <ProgressStep removeBtnRow label="House">
                     </ProgressStep>
-                    <ProgressStep removeBtnRow label="Senate Passage">
+                    <ProgressStep removeBtnRow label="Senate">
                     </ProgressStep>
                     <ProgressStep removeBtnRow label="Enacted">
                     </ProgressStep>
@@ -159,7 +165,7 @@ export default function BillCard(props) {
                 </Text>
                 <Text style={styles.titleText}>{props.title}</Text>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Sponsor name={props.sponsor} />
+                    <Sponsor name={props.sponsor} party={props.party} />
                     <Committee committee={props.committee} />
                 </View>
                 <BillStatus house_passage={props.house_passage}
