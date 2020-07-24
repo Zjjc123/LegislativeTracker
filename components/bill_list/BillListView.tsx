@@ -11,6 +11,7 @@ export default function BillListView() {
   const [bills, setBills] = useState()
   const [initialBills, setInitialBills] = useState()
   const [searchValue, setSearchValue] = useState()
+  const [tagMap, setTagMap] = useState()
 
   // Empty dependency array in use effect (runs once)
   useEffect(() => {
@@ -29,9 +30,23 @@ export default function BillListView() {
   const initializeBill = (response) => {
     setBills(response);
     setInitialBills(response);
+    
+    var tM
+    response.forEach(item => {
+      
+      console.log(item.committees)
+      if (tM[item.committees] == null)
+      {
+        tM[item.committees] = new Array<Object>()
+      }
+      tM[item.committees].push(item);
+    });
+    setTagMap(tm)
+    console.dir(tagMap)
+    console.log("HELLO")
   }
 
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <BillCard
       title={item.short_title}
       bill_id={item.number}
@@ -62,7 +77,10 @@ export default function BillListView() {
   }
 
   const filterBills = (category) => {
-
+    var cat = category.label
+    // console.log(cat)
+    if (cat != 0 && tagMap["House " + cat + " Committee"] != null)
+      setBills(tagMap["House " + cat + " Committee"])
   }
 
   return (
@@ -102,7 +120,7 @@ export default function BillListView() {
           { label: "Veteran's Affairs", value: '19' },
           { label: 'Ways and Means', value: '20' },
         ]}
-        onChangeItem={(value) => filterBills(value)}>
+        onChangeItem={(label) => filterBills(label)}>
 
       </DropDownPicker>
       <FlatList
