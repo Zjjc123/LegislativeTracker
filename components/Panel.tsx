@@ -42,7 +42,7 @@ export default class Panel extends React.Component<{}, stateType> {
         });
 
         this.state.animation.setValue(initialValue);
-        Animated.spring(
+        Animated.timing(
             this.state.animation,
             {
                 toValue: finalValue,
