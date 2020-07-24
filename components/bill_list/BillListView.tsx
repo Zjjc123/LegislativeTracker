@@ -35,6 +35,7 @@ export default function BillListView() {
       bill_id={item.number}
       intro_date={item.introduced_date}
       summary={item.summary}
+      committee={item.committees}
     />
   );
 
