@@ -2,6 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native';
 import { Card, CheckBox } from 'react-native-elements'
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
+import Panel from '../Panel'
 
 const StepIcon = require('./StepIcon').default
 
@@ -195,7 +196,9 @@ export default function BillCard(props) {
                     <Committee committee={props.committee} />
                 </View>
 
-                <Text>{props.summary}</Text>
+                <Panel title="Summary">
+                    <Text>{props.summary}</Text>
+                </Panel>
 
                 <BillStatus house_passage={props.house_passage}
                     senate_passage={props.senate_passage}
