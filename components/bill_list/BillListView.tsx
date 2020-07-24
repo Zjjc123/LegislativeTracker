@@ -54,6 +54,8 @@ export default function BillListView() {
   return (
     <View style={styles.container}>
       <SearchBar
+        containerStyle={styles.searchCont}
+        inputContainerStyle={styles.search}
         placeholder="Search"
         value={searchValue}
         onChangeText={(value) => searchBills(value)}
@@ -77,4 +79,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 8,
   },
+  search: {
+    backgroundColor: 'white',
+  },
+  searchCont: {
+    backgroundColor: '#EAE7D8',
+    borderBottomWidth: 0,
+    borderTopWidth: 0
+  }
 });
