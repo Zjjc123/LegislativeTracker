@@ -42,6 +42,7 @@ export default function BillListView() {
       senate_passage={item.senate_passage}
       enacted={item.enacted}
       vetoed={item.vetoed}
+      active={item.active}
     />
   );
 

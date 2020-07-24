@@ -1,7 +1,9 @@
 import React from 'react'
-import { View, StyleSheet, Text, ViewPagerAndroid } from 'react-native';
-import { Card, Badge } from 'react-native-elements'
+import { View, StyleSheet, Text } from 'react-native';
+import { Card, CheckBox } from 'react-native-elements'
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
+
+const StepIcon = require('./StepIcon').default
 
 export default function BillCard(props) {
     const Committee = (props) => {
@@ -151,8 +153,17 @@ export default function BillCard(props) {
             step = 1
         else if (props.house_passage != null)
             step = 0
+
+        var vetoBox: boolean = false
+        var activeBox: boolean = false
+        if (props.veto != null)
+            vetoBox = true
+        if (props.active != null)
+            activeBox = true
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, flexDirection:"row"}}>
+                <StepIcon isCompletedStep={activeBox}
+                    label={"Active"}></StepIcon>
                 <ProgressSteps activeStep={step} >
                     <ProgressStep removeBtnRow label="House">
                     </ProgressStep>
@@ -161,6 +172,8 @@ export default function BillCard(props) {
                     <ProgressStep removeBtnRow label="Enacted">
                     </ProgressStep>
                 </ProgressSteps>
+                <StepIcon isCompletedStep={vetoBox}
+                    label={"Veto"}></StepIcon>
             </View>
         )
     }
@@ -169,7 +182,7 @@ export default function BillCard(props) {
         <View>
             <Card containerStyle={styles.card}>
 
-                <Text style={{marginBottom: 3}}>
+                <Text style={{ marginBottom: 3 }}>
                     <Text style={{ fontWeight: "bold" }}>{props.bill_id}</Text>
                     <Text>{"  introduced: "}</Text>
                     <Text>{props.intro_date}</Text>
@@ -185,9 +198,10 @@ export default function BillCard(props) {
                 <Text>{props.summary}</Text>
 
                 <BillStatus house_passage={props.house_passage}
-                senate_passage={props.senate_passage}
-                enacted={props.enacted}
-                vetoed={props.vetoed}/>
+                    senate_passage={props.senate_passage}
+                    enacted={props.enacted}
+                    vetoed={props.vetoed}
+                    active={props.active} />
             </Card>
         </View>
     )
