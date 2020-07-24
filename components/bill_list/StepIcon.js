@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
+// https://github.com/colbymillerdev/react-native-progress-steps/blob/develop/src/ProgressSteps/ProgressSteps.js
+
 class StepIcon extends Component {
   render() {
     let styles;
