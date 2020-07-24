@@ -13,11 +13,11 @@ export default function BillCard(props) {
                 com = "Agriculture"
                 break
             case "House Appropriations Committee":
-                colorHex = "#ff8c00"
+                colorHex = "#6AEFCF"
                 com = "Appropriations"
                 break
             case "House Armed Services Committee":
-                colorHex = "#F7CB15"
+                colorHex = "#FFCD40"
                 com = "Armed Services"
                 break
             case "House Budget Committee":
@@ -25,7 +25,7 @@ export default function BillCard(props) {
                 com = "Budget"
                 break
             case "House Education and Labor Committee":
-                colorHex = "#ba55d3"
+                colorHex = "#FF8DB0"
                 com = "Education and Labor"
                 break
             case "House Energy and Commerce Committee":
@@ -37,7 +37,7 @@ export default function BillCard(props) {
                 com = "Ethics"
                 break
             case "House Financial Services Committee":
-                colorHex = "#0000ff"
+                colorHex = "#41F29A"
                 com = "Financial Services"
                 break
             case "House Foreign Affairs Committee":
@@ -49,7 +49,7 @@ export default function BillCard(props) {
                 com = "Homeland Security"
                 break
             case "House Committee on House Administration":
-                colorHex = "#d3d3d3"
+                colorHex = "#7BC7FF"
                 com = "House Administration"
                 break
             case "House Judiciary Committee":
@@ -57,7 +57,7 @@ export default function BillCard(props) {
                 com = "Judiciary"
                 break
             case "House Natural Resources Committee":
-                colorHex = "#2e8b57"
+                colorHex = "#5CFF64"
                 com = "Natural Resources"
                 break
             case "House Oversight and Reform Committee":
@@ -65,7 +65,7 @@ export default function BillCard(props) {
                 com = "Oversight and Reform"
                 break
             case "House Rules Committee":
-                colorHex = "#808000"
+                colorHex = "#C07DF4"
                 com = "Rules"
                 break
             case "House Science, Space, and Technology Committee":
@@ -77,7 +77,7 @@ export default function BillCard(props) {
                 com = "Small Business"
                 break
             case "House Transportation and Infrastructure Committee":
-                colorHex = "#160F29"
+                colorHex = "#FFCA55"
                 com = "Transportation and Infrastructure"
                 break
             case "House Veteran's Affairs Committee":
@@ -85,15 +85,16 @@ export default function BillCard(props) {
                 com = "Veteran's Affairs"
                 break
             case "House Ways and Means Committee":
-                colorHex = "#4f5d2f"
+                colorHex = "#DF70F9"
                 com = "Ways and Means"
                 break
             case "Senate Homeland Security and Governmental Affairs Committee":
-                colorHex = "#4f5d2f"
+                colorHex = "#97EF5E"
                 com = "Homeland Security and Governmental Affairs"
                 break
             case "":
                 com = "None"
+                colorHex = "#6B98F2"
                 break
         }
 
