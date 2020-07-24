@@ -11,6 +11,7 @@ export default function BillListView() {
   const [bills, setBills] = useState()
   const [initialBills, setInitialBills] = useState()
   const [searchValue, setSearchValue] = useState()
+  const [categoryValue, setCategoryValue] = useState()
   const [tagMap, setTagMap] = useState()
 
   // Empty dependency array in use effect (runs once)
@@ -28,16 +29,15 @@ export default function BillListView() {
   }, [])
 
   const initializeBill = (response) => {
-    var tM : {[id: string] : Array<Object>} = {}
+    var tM: { [id: string]: Array<Object> } = {}
 
     setBills(response);
     setInitialBills(response);
 
     response.forEach(item => {
-      
+
       console.log(item.committees)
-      if (tM[item.committees] == null)
-      {
+      if (tM[item.committees] == null) {
         tM[item.committees] = new Array<Object>()
       }
       tM[item.committees].push(item);
@@ -62,29 +62,43 @@ export default function BillListView() {
       active={item.active}
     />
   );
+  const filterBills = (category, search) => {
+    var cat
+    var sea
 
-  const searchBills = (search) => {
-    const filteredBills = initialBills.filter(
-      bill => {
-        let billLowerCase = bill.title.toLowerCase()
-        let searchTermLowerCase = search.toLowerCase()
+    if (category != null) {
+      sea = searchValue
+      cat = category.label  
+      setCategoryValue(category.label)
+    }
+    if (search != null) {
+      cat = categoryValue
+      sea = search
+      setSearchValue(search)
+    }
 
-        return billLowerCase.indexOf(searchTermLowerCase) > -1
-      }
-    )
-    setBills(filteredBills)
-    setSearchValue(search)
-  }
-
-  const filterBills = (category) => {
-    var cat = category.label
+    var postTag
 
     if (cat == "None")
-      setBills(initialBills)
+      postTag = initialBills
     else if (tagMap["House " + cat + " Committee"] != null)
-      setBills(tagMap["House " + cat + " Committee"])
+      postTag = tagMap["House " + cat + " Committee"]
     else
-      setBills(undefined)
+      postTag = undefined
+
+    if (postTag != undefined) {
+      const filteredBills = postTag.filter(
+        bill => {
+          let billLowerCase = bill.title.toLowerCase()
+          let searchTermLowerCase = sea.toLowerCase()
+
+          return billLowerCase.indexOf(searchTermLowerCase) > -1
+        }
+      )
+      setBills(filteredBills)
+    } else {
+      setBills(postTag)
+    }
   }
 
   return (
@@ -94,7 +108,7 @@ export default function BillListView() {
         inputContainerStyle={styles.search}
         placeholder="Search"
         value={searchValue}
-        onChangeText={(value) => searchBills(value)}
+        onChangeText={(value) => filterBills(null, value)}
       />
       <DropDownPicker
         containerStyle={{ height: 40 }}
@@ -124,7 +138,7 @@ export default function BillListView() {
           { label: "Veteran's Affairs", value: '19' },
           { label: 'Ways and Means', value: '20' },
         ]}
-        onChangeItem={(label) => filterBills(label)}>
+        onChangeItem={(label) => filterBills(label, null)}>
 
       </DropDownPicker>
       <FlatList
