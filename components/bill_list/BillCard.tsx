@@ -1,4 +1,5 @@
-import React, { View, Alert } from 'react-native';
+import React from 'react'
+import { View, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements'
 
 export default function BillCard(props) {

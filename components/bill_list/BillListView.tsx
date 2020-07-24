@@ -29,7 +29,7 @@ export default function BillListView() {
     setInitialBills(response);
   }
 
-  const renderItem = (item) => (
+  const renderItem = ({item}) => (
     <BillCard
       title={item.title}
       subtitle={item.bill_id}
