@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text, ViewPagerAndroid } from 'react-native';
-import { Card, colors } from 'react-native-elements'
+import { Card, Badge } from 'react-native-elements'
+import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 
 export default function BillCard(props) {
     const Committee = (props) => {
@@ -126,6 +127,28 @@ export default function BillCard(props) {
         )
     }
 
+    const BillStatus = (props) => {
+        var step: number = 0
+        if (props.enacted != null)
+            step = 2
+        else if (props.senate_passage != null)
+            step = 1
+        else if (props.house_passage != null)
+            step = 0
+        return (
+            <View style={{ flex: 1 }}>
+                <ProgressSteps activeStep={step} >
+                    <ProgressStep removeBtnRow label="House Passage">
+                    </ProgressStep>
+                    <ProgressStep removeBtnRow label="Senate Passage">
+                    </ProgressStep>
+                    <ProgressStep removeBtnRow label="Enacted">
+                    </ProgressStep>
+                </ProgressSteps>
+            </View>
+        )
+    }
+
     return (
         <View>
             <Card containerStyle={styles.card}>
@@ -139,9 +162,10 @@ export default function BillCard(props) {
                     <Sponsor name={props.sponsor} />
                     <Committee committee={props.committee} />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-
-                </View>
+                <BillStatus house_passage={props.house_passage}
+                    senate_passage={props.senate_passage}
+                    enacted={props.enacted}
+                    vetoed={props.vetoed}></BillStatus>
             </Card>
         </View>
     )
