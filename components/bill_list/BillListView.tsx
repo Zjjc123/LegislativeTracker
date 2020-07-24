@@ -31,7 +31,7 @@ export default function BillListView() {
 
   const renderItem = ({item}) => (
     <BillCard
-      title={item.title}
+      title={item.short_title}
       bill_id={item.number}
       intro_date={item.introduced_date}
       summary={item.summary}

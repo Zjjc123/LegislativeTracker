@@ -85,8 +85,12 @@ export default function BillCard(props) {
                 com = "Veteran's Affairs"
                 break
             case "House Ways and Means Committee":
-                colorHex = "#4F5D2F"
+                colorHex = "#4f5d2f"
                 com = "Ways and Means"
+                break
+            case "Senate Homeland Security and Governmental Affairs Committee":
+                colorHex = "#4f5d2f"
+                com = "Homeland Security and Governmental Affairs"
                 break
             case "":
                 com = "None"
@@ -98,13 +102,15 @@ export default function BillCard(props) {
                 backgroundColor: colorHex,
                 borderRadius: 10,
                 justifyContent: "center",
-                flex: 1
+                flex: 1,
+                padding: 2,
+                marginTop: 10
             }}>
                 <Text style={{
                     color: "#ffffff",
                     textAlign: "center",
                     textAlignVertical: "center",
-
+                    fontSize: 12
                 }}>{com}</Text>
             </Card>
         )
@@ -122,12 +128,15 @@ export default function BillCard(props) {
                 backgroundColor: colorHex,
                 borderRadius: 10,
                 justifyContent: "center",
-                flex: 1
+                flex: 1,
+                padding: 2,
+                marginTop: 10
             }}>
                 <Text style={{
                     color: "#ffffff",
                     textAlign: "center",
                     textAlignVertical: "center",
+                    fontSize: 12,
                 }}>{props.name}</Text>
             </Card>
         )
@@ -158,14 +167,16 @@ export default function BillCard(props) {
     return (
         <View>
             <Card containerStyle={styles.card}>
-                <Text>
+
+                <Text style={{marginBottom: 3}}>
                     <Text style={{ fontWeight: "bold" }}>{props.bill_id}</Text>
-                    <Text>{" introduced: "}</Text>
+                    <Text>{"  introduced: "}</Text>
                     <Text>{props.intro_date}</Text>
                 </Text>
+
                 <Text style={styles.titleText}>{props.title}</Text>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
                     <Sponsor name={props.sponsor} party={props.party} />
+                <View style={{ flex: 1, flexDirection: 'row' }}>
                     <Committee committee={props.committee} />
                 </View>
                 <BillStatus house_passage={props.house_passage}
@@ -183,7 +194,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     titleText: {
-        fontSize: 15,
-        fontWeight: "bold"
+        fontSize: 20,
+        fontWeight: "bold",
     },
 });
