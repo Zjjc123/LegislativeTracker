@@ -180,9 +180,9 @@ export default function BillCard(props) {
                     <Committee committee={props.committee} />
                 </View>
                 <BillStatus house_passage={props.house_passage}
-                    senate_passage={props.senate_passage}
-                    enacted={props.enacted}
-                    vetoed={props.vetoed}></BillStatus>
+                senate_passage={props.senate_passage}
+                enacted={props.enacted}
+                vetoed={props.vetoed}/>
             </Card>
         </View>
     )
