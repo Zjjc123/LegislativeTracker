@@ -78,10 +78,8 @@ export default class Panel extends React.Component<{}, stateType> {
                     onLayout={this._setMinHeight.bind(this)}
                     style={styles.titleContainer}
                     onPress={this.toggle.bind(this)}>
-                    
                     <Text style={styles.title}>{this.state.title}</Text>
                     {icon}
-
                 </TouchableOpacity>
 
                 <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
@@ -97,7 +95,8 @@ var styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         marginTop:10,
-        overflow:'hidden'
+        overflow:'hidden',
+        marginBottom:10
     },
     titleContainer: {
         flexDirection: 'row'
