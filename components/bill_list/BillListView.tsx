@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { SearchBar } from 'react-native-elements'
 import BillCard from './BillCard'
+import DropDownPicker from 'react-native-dropdown-picker';
+
 var url = 'https://api.propublica.org/congress/v1/116/house/bills/active.json'
 var apiKey = "DvH6rYhOGmII5UmALNyzXGnRS92InKR3ymkTsP9C"
 
@@ -59,6 +61,10 @@ export default function BillListView() {
     setSearchValue(search)
   }
 
+  const filterBills = (category) => {
+
+  }
+
   return (
     <View style={styles.container}>
       <SearchBar
@@ -68,6 +74,37 @@ export default function BillListView() {
         value={searchValue}
         onChangeText={(value) => searchBills(value)}
       />
+      <DropDownPicker
+        containerStyle={{ height: 40 }}
+        style={{ backgroundColor: '#fafafa' }}
+        itemStyle={{
+          justifyContent: 'flex-start'
+        }} items={[
+          { label: 'None', value: '0' },
+          { label: 'Agriculture', value: '1' },
+          { label: 'Appropriations', value: '2' },
+          { label: 'Armed Services', value: '3' },
+          { label: 'Budget', value: '4' },
+          { label: 'Education and Labor', value: '5' },
+          { label: 'Energy and Commerce', value: '6' },
+          { label: 'Ethics', value: '7' },
+          { label: 'Financial Services', value: '8' },
+          { label: 'Foreign Affairs', value: '9' },
+          { label: 'Homeland Security', value: '10' },
+          { label: 'House Administration', value: '11' },
+          { label: 'France', value: '12' },
+          { label: 'Judiciary', value: '13' },
+          { label: 'Natural Resources', value: '14' },
+          { label: 'Oversight and Reform', value: '15' },
+          { label: 'Rules', value: '16' },
+          { label: 'Science, Space, and Technology', value: '17' },
+          { label: 'Small Business', value: '18' },
+          { label: "Veteran's Affairs", value: '19' },
+          { label: 'Ways and Means', value: '20' },
+        ]}
+        onChangeItem={(value) => filterBills(value)}>
+
+      </DropDownPicker>
       <FlatList
         data={bills}
         renderItem={renderItem}
