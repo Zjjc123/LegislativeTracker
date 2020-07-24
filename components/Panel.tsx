@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableHighlight, Animated, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Platform, Animated, TouchableOpacity} from 'react-native';
 import { Icon } from 'react-native-elements'
+import * as OS from "os";
 
 interface stateType{
     title: string,
@@ -29,40 +30,40 @@ export default class Panel extends React.Component<{}, stateType> {
             expanded: false,
             maxHeight: 0,
             minHeight: 0,
-            animation: new Animated.Value(20)
+            animation: new Animated.Value(25),
         };
     }
 
     toggle(){
-        let initialValue = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight;
         let finalValue = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
 
         this.setState({
             expanded : !this.state.expanded
         });
 
-        this.state.animation.setValue(initialValue);
         Animated.timing(
             this.state.animation,
             {
                 toValue: finalValue,
-                useNativeDriver: false
+                useNativeDriver: false,
+                duration: 300
             }
         ).start();
     }
 
     _setMaxHeight(event: any){
+        const height = event.nativeEvent.layout.height;
         this.setState({
-            maxHeight: event.nativeEvent.layout.height
+            maxHeight: height,
         });
     }
 
     _setMinHeight(event: any){
+        const height = event.nativeEvent.layout.height;
         this.setState({
-            minHeight: event.nativeEvent.layout.height
+            minHeight: height,
         });
     }
-
 
     render(){
         let icon = this.icons['down'];
@@ -75,11 +76,11 @@ export default class Panel extends React.Component<{}, stateType> {
             <Animated.View style={[styles.container,{height: this.state.animation}]}>
 
                 <TouchableOpacity
-                    onLayout={this._setMinHeight.bind(this)}
                     style={styles.titleContainer}
-                    onPress={this.toggle.bind(this)}>
-                    <Text style={styles.title}>{this.state.title}</Text>
-                    {icon}
+                    onPress={this.toggle.bind(this)}
+                    onLayout={this._setMinHeight.bind(this)}>
+                        <Text style={styles.title}>{this.state.title}</Text>
+                        {icon}
                 </TouchableOpacity>
 
                 <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
@@ -91,11 +92,11 @@ export default class Panel extends React.Component<{}, stateType> {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         marginTop:10,
-        overflow:'hidden',
+        overflow: Platform.OS === 'ios' ?  'scroll': 'hidden',
         marginBottom:10
     },
     titleContainer: {
@@ -106,11 +107,8 @@ var styles = StyleSheet.create({
         padding: 0,
         fontWeight:'bold'
     },
-    button: {
-
-    },
     body: {
         padding: 0,
-        paddingTop: 0
+        paddingTop: 0,
     }
 });
